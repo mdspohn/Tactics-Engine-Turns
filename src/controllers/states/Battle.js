@@ -379,7 +379,7 @@ class BattleState {
     // -----------------
 
     onEndTurn() {
-        if (this.state.is('move'))
+        if (this.state.is('none'))
             return;
         if (!this.state.is('menu')) {
             const state = this.state.current;
