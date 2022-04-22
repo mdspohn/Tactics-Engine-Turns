@@ -1,0 +1,966 @@
+/* -----------------------------
+# CSS Reset
+----------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    background-color: #000;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote::before, blockquote::after,
+q:before, q:after {
+	content: '';
+    content: 'none';
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+*:focus {
+    outline: none;
+}
+
+/* -----------------------------
+# General
+----------------------------- */
+
+:root {
+    --bg-color: rgba(0,0,0,0.3);
+    /* --background: linear-gradient( 211deg, rgba(0,0,0,0.2) 5%,rgba(0,0,0,0.4) 95%); */
+    --border-width: 2px;
+    --border-color: rgba(0,0,0,0.2);
+    --border-color-svg: rgba(0,0,0,0.5);
+    --blur: blur(20px);
+    --box-shadow: none;
+    --box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.2);
+
+    --orange: rgb(243, 176, 30);
+    --blue: rgb(26, 171, 228);
+    --blue-text: rgb(26, 171, 228);
+    --blue-with-texture: rgb(47, 128, 248);
+    --red: rgb(184, 69, 69);
+    --red-text: rgb(224, 102, 102);
+    --red-with-texture: rgb(170, 33, 33);
+    --green: rgb(32, 155, 87);
+    --gray: rgb(255, 255, 255, 0.4);
+    --font-size: 24px;
+    --font-size-small: 22px;
+    --font-size-small-num: 16px;
+
+    --primary-svg: black;
+    --secondary-svg: white;
+}
+
+@font-face {
+    font-family: KoHo;
+    src: url("assets/fonts/KoHo-Regular.ttf");
+}
+
+@font-face {
+    font-family: Icons;
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("assets/fonts/icons.ttf") format("truetype");
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    font-family: KoHo;
+    color: #FFFFFF;
+    background: #000 url('assets/backgrounds/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    user-select: none;
+    font-size: var(--font-size);
+}
+
+@keyframes bg-scroll { 100% { background-position: 96px 96px; } }
+
+body::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/misc/repeating-squares.png");
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-size: 96px 96px;
+  animation: bg-scroll 1.5s infinite;
+  animation-timing-function: linear;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    image-rendering: pixelated;
+}
+
+#interface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-size: var(--font-size);
+}
+
+#interface section {
+    pointer-events: all;
+}
+
+#interface, #interface > section {
+    pointer-events: none;
+}
+
+.orange { color: var(--orange) }
+.blue   { color: var(--blue)   }
+.red    { color: var(--red)    }
+.green  { color: var(--green)  }
+
+.bg-orange { color: var(--orange) }
+.bg-blue   { color: var(--blue)   }
+.bg-red    { color: var(--red)    }
+.bg-green  { color: var(--green)  }
+
+i.icon {
+    font-family: Icons;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    letter-spacing: normal;
+}
+i.icon::before { position: absolute; }
+i.icon::after  { position: relative; }
+i.icon > i.icon {
+    position: absolute;
+    font-size: 60% !important;
+    left: 60%;
+    top: 70%;
+    z-index: 1;
+}
+
+i.icon.frog::before     { content: '\f52e';      color: #ffffff; }
+i.icon.frog::after      { content: '\f52e\f52e'; color: #2fae44; }
+  
+i.icon.burn::before     { content: '\f06d';      color: #fbbf00; }
+i.icon.burn::after      { content: '\f06d\f06d'; color: #ff6536; }
+  
+i.icon.poison::before   { content: '\f043';      color: #ffffff; }
+i.icon.poison::after    { content: '\f043\f043'; color: #2fae44; }
+  
+i.icon.freeze::before   { content: '\f7ad';      color: #40cbe4; }
+i.icon.freeze::after    { content: '\f7ad\f7ad'; color: #aff0f5; }
+  
+i.icon.sleep::before    { content: '\f880';      color: #e4d940; }
+i.icon.sleep::after     { content: '\f880\f880'; color: #fbffc7; }
+  
+i.icon.male::before     { content: '\f222';      color: var(--blue); }
+i.icon.male::after      { content: '\f222\f222'; color: transparent; }
+  
+i.icon.female::before   { content: '\f221';      color: var(--red-text); }
+i.icon.female::after    { content: '\f221\f221'; color: transparent;     }
+
+i.icon.slashing::before { content: '\f6b3';      color: #916300; }
+i.icon.slashing::after  { content: '\f6b3\f6b3'; color: #cecece; }
+
+i.icon > i.icon.debuff  { top: 43%; }
+i.icon.buff::before     { content: '\f357';      color: #2fae44; }
+i.icon.debuff::before   { content: '\f354';      color: #ff6536; }
+
+/* -----------------------------
+# Reusable UI Effects
+----------------------------- */
+
+@keyframes rotating-border {
+    0%   { opacity: 0.75;    clip-path: polygon(0 0, 100% 0, 100% 2px, 0 2px); }
+    25%  { opacity: 1; clip-path: polygon(calc(100% - 2px) 0, 100% 0, 100% 100%, calc(100% - 2px) 100%); }
+    50%  { opacity: 0.75;    clip-path: polygon(0 calc(100% - 2px), 100% calc(100% - 2px), 100% 100%, 0 100%); }
+    75%  { opacity: 1; clip-path: polygon(0 0, 2px 0, 2px 100%, 0 100%); }
+    100% { opacity: 0.75;   clip-path: polygon(0 0, 100% 0, 100% 2px, 0 2px); }
+  }
+
+.focusable:not(.disabled)::before,
+.focusable:not(.disabled)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + (var(--border-width) * 2));
+    height: calc(100% + (var(--border-width) * 2));
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0);
+}
+.focusable.focused::before,
+.focusable.focused::after {
+    z-index: 1;
+    margin: -2px;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 1);
+    animation: rotating-border 4s linear infinite;
+    transition: box-shadow 1500ms ease-in-out;
+}
+.focusable.focused::before {
+    animation-delay: -2000ms;
+}
+:is(.has-selection, .disabled) .focusable::before,
+:is(.has-selection, .disabled) .focusable::after {
+    display: none;
+}
+
+/* -----------------------------
+# Combat - Shared Styles
+----------------------------- */
+
+#combat .portrait {
+    opacity: 0; /* Base Animation State */
+
+    position: relative;
+    width: 128px;
+    height: 40px;
+    border: var(--border-width) solid var(--border-color);
+    background-color: var(--bg-color);
+    backdrop-filter: var(--blur);
+    box-shadow: var(--box-shadow);
+}
+#combat .portrait .allegiance {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    pointer-events: none;
+}
+#combat .portrait.ally .allegiance {
+    background-image: url('./assets/misc/allegiance-ally.png');
+    background-size: 65%;
+    background-position: top -20px right -25px;
+}
+#combat .portrait.foe .allegiance {
+    background-image: url('./assets/misc/allegiance-foe.png');
+    background-size: 55%;
+    background-position: top -5px right -25px;
+}
+#combat .portrait .sprite,
+#combat .portrait .sprite::after {
+    image-rendering: pixelated;
+    pointer-events: none;
+    position: absolute;
+    width: 32px;
+    height: 24px;
+    background-repeat: no-repeat;
+}
+#combat .portrait .sprite {
+    bottom: 0;
+    left: 0;
+    background-position: bottom left;
+    transform-origin: bottom left;
+    transform: scale(4);
+    z-index: 2;
+}
+#combat .portrait .sprite::after {
+    content: '';
+    background-position: bottom left -32px;
+    bottom: -8px;
+    z-index: 2;
+}
+
+#combat .portrait.player    .sprite,
+#combat .portrait.player    .sprite::after { background-image: url('./assets/units/player.png') }
+#combat .portrait.slime     .sprite,
+#combat .portrait.slime     .sprite::after { background-image: url('./assets/units/slime.png')  }
+#combat .portrait.mimic     .sprite,
+#combat .portrait.mimic     .sprite::after { background-image: url('./assets/units/mimic.png')  }
+#combat .portrait.nautilus  .sprite,
+#combat .portrait.nautilus  .sprite::after { background-image: url('./assets/units/nautilus.png')  }
+
+/* -----------------------------
+# Combat - Unit Panels
+----------------------------- */
+
+#combat-active,
+#combat-target {
+    display: none; /* Base Animation State */
+
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    width: 300px;
+}
+#combat-active .header,
+#combat-target .header {
+    position: relative;
+    margin-bottom: 10px;
+}
+#combat-active .status-effects,
+#combat-target .status-effects {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+    column-gap: 10px;
+    width: 156px;
+}
+#combat-active .status-effects .placeholder,
+#combat-target .status-effects .placeholder {
+    visibility: hidden;
+    width: 44px;
+    height: 0;
+}
+#combat-active .status-effects .effect,
+#combat-target .status-effects .effect {
+    opacity: 0;    /* Base Animation State */
+
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-color);
+    backdrop-filter: var(--blur);
+    box-shadow: var(--box-shadow);
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+}
+#combat-active .status-effects .effect:not(:nth-child(n):nth-child(-n+3)),
+#combat-target .status-effects .effect:not(:nth-child(n):nth-child(-n+3)) {
+    margin-bottom: 10px;
+}
+#combat-active .status-effects .effect:nth-child(n):nth-child(-n+3):hover ~ .icon:nth-child(n+4),
+#combat-target .status-effects .effect:nth-child(n):nth-child(-n+3):hover ~ .icon:nth-child(n+4) {
+    display: none;
+}
+#combat-active .tooltip,
+#combat-target .tooltip {
+    display: none; /* Base Animation State */
+    opacity: 0;    /* Base Animation State */
+
+    position: absolute;
+    bottom: 54px;
+    right: -184px;
+    width: 296px;
+    padding: 13px 20px 15px;
+    border: var(--border-width) solid var(--border-color);
+    background-color: var(--bg-color);
+    font-size: var(--font-size-small);
+    backdrop-filter: var(--blur);
+    line-height: 22px;
+}
+#combat-active .main,
+#combat-target .main {
+    opacity: 0; /* Base Animation State */
+
+    position: relative;
+    padding: 16px 18px 20px;
+    border: var(--border-width) solid var(--border-color);
+    background-color: var(--bg-color);
+    backdrop-filter: var(--blur);
+    box-shadow: var(--box-shadow);
+}
+#combat-active .main::before,
+#combat-target .main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/misc/allegiance-ally.png');
+    background-repeat: no-repeat;
+    background-position: top right;
+    opacity: 0.05;
+}
+#combat-active .name > i,
+#combat-target .name > i {
+    margin-left: 8px;
+    display: none;
+}
+#combat-active .species,
+#combat-target .species {
+    margin-top: 3px;
+    padding-bottom: 10px;
+    font-size: var(--font-size-small);
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: var(--orange);
+    border-bottom-width: 0;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0)) 1;
+}
+#combat-active .level,
+#combat-target .level {
+    font-size: var(--font-size-small-num);
+    margin-right: 2px;
+    color: #fff;
+}
+#combat-active .level::before,
+#combat-target .level::before {
+    content: 'level ';
+    font-size: var(--font-size-small);
+    color: var(--gray);
+}
+#combat-active .status,
+#combat-target .status {
+    position: relative;
+    margin-top: 16px;
+    z-index: 2;
+}
+#combat-active .status .tp,
+#combat-target .status .tp {
+    position: relative;
+    left: 70%;
+    width: 30%;
+    text-align: right;
+}
+#combat-active .status .hp,
+#combat-target .status .hp {
+    width: 65%;
+    margin-top: -44px;
+}
+#combat-active .status .text,
+#combat-target .status .text {
+    margin-bottom: 4px;
+}
+#combat-active .status .text .current::before,
+#combat-target .status .text .current::before,
+#combat-active .status .text .max,
+#combat-target .status .text .max,
+#combat-active .status .text .max::before,
+#combat-target .status .text .max::before {
+    font-size: var(--font-size-small);
+    font-variant: small-caps;
+    color: var(--gray);
+}
+#combat-active .status .tp .text .current::before,
+#combat-target .status .tp .text .current::before {
+    content: 'tp ';
+}
+#combat-active .status .hp .text .current::before,
+#combat-target .status .hp .text .current::before {
+    content: 'hp ';
+}
+#combat-active .status .hp .text .max,
+#combat-target .status .hp .text .max {
+    display: none;
+    font-size: var(--font-size-small-num);
+}
+#combat-active .status .hp .text .max::before,
+#combat-target .status .hp .text .max::before {
+    display: none;
+    font-size: var(--font-size-small-num);
+    content: ' / ';
+}
+#combat-active .status .resource,
+#combat-target .status .resource {
+    width: calc(100% - (var(--border-width) * 2));
+    height: 12px;
+    border: var(--border-width) solid var(--border-color);
+    background-color: var(--bg-color);
+}
+#combat-active .status .resource .bar,
+#combat-target .status .resource .bar {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: var(--bar-color)
+}
+#combat-active .status .hp .resource .bar,
+#combat-target .status .hp .resource .bar {
+    --bar-color: var(--red);
+}
+#combat-active .status .tp .resource .bar,
+#combat-target .status .tp .resource .bar {
+    --bar-color: var(--blue);
+}
+/* @keyframes resource-bar-texture { 100% { background-position: 250px 250px } }
+#combat-active .status .hp .resource .bar::after,
+#combat-active .status .tp .resource .bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/misc/hp-bar-bg.png');
+    animation-name: resource-bar-texture;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 20s;
+    opacity: 1;
+}
+#combat-active .status .tp .resource .bar::after {
+    animation-delay: -5s;
+    animation-direction: reverse;
+    animation-duration: 10s;
+} */
+
+#combat-target { left: 810px }
+#combat-target .header,
+#combat-target .status-effects .icon,
+#combat-target .main::before { transform: scaleX(-1) }
+#combat-target .status-effects > :is(.icon:nth-child(1), .icon:nth-child(4)) > .tooltip { left: auto; right: -2px   }
+#combat-target .status-effects > :is(.icon:nth-child(2), .icon:nth-child(5)) > .tooltip { left: auto; right: -58px  }
+#combat-target .status-effects > :is(.icon:nth-child(3), .icon:nth-child(6)) > .tooltip { left: auto; right: -114px }
+#combat-target .main .classification { text-align: right }
+#combat-target .species { border-image: linear-gradient(to left, rgba(255,255,255,0.1), rgba(255,255,255,0)) 1 }
+
+/* -----------------------------
+# Combat - Attacker / Defender Summaries
+----------------------------- */
+
+#combat-attacking,
+#combat-defending {
+    display: none; /* Base Animation State */
+
+    position: absolute;
+    bottom: var(--bottom);
+    left: var(--left);
+}
+#combat-attacking { --bottom: 144px; --left: 340px; }
+#combat-defending { --bottom: 156px; --left: 535px; }
+#combat-attacking > .prediction,
+#combat-defending > .prediction {
+    position: absolute;
+    top: var(--top);
+    right: var(--right);
+    left: var(--left);
+    width: 100%;
+    font-size: var(--font-size-small);
+    z-index: 1;
+}
+#combat-attacking > .prediction { --top: 57px; --right: auto; --left: 15px; }
+#combat-defending > .prediction { --top: 70px; --right: 15px; --left: auto; text-align: right; }
+:is(#combat-attacking, #combat-defending) > .prediction > .damage { color: var(--red-text) }
+#combat-attacking > .prediction > span::before,
+#combat-defending > .prediction > span::before {
+    content: var(--text);
+    padding-left: 5px;
+    font-variant: small-caps;
+    color: var(--gray);
+}
+:is(#combat-attacking, #combat-defending) > .prediction >   .damage::before { --text: 'dmg ' }
+:is(#combat-attacking, #combat-defending) > .prediction > .accuracy::before { --text: 'acc ' }
+#combat-attacking > .info::after,
+#combat-defending > .info::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+#combat-attacking > .info { margin-top: 8px }
+#combat-defending > .info { margin-bottom: 10px; text-align: right; }
+#combat-attacking > .info > .icon,
+#combat-defending > .info > .icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-color);
+    backdrop-filter: var(--blur);
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    background-position: center center;
+}
+#combat-attacking > .info > .text,
+#combat-defending > .info > .text {
+    float: left;
+    height: 40px;
+    padding: 0 15px;
+    line-height: 38px;
+    background-color: var(--bg-color);
+    border: var(--border-width) solid var(--border-color);
+    backdrop-filter: var(--blur);
+    font-size: var(--font-size-small);
+}
+#combat-defending > .info > .icon,
+#combat-defending > .info > .text {
+    float: right;
+}
+#combat-defending > .info > .icon { margin: 0 0 0 10px }
+#combat-attacking polygon,
+#combat-defending polygon {
+    position: relative;
+    fill: var(--bg-color);
+    stroke: var(--border-color-svg);
+    stroke-width: var(--border-width);
+}
+#combat-attacking::before,
+#combat-defending::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 255px;
+    height: 100px;
+    backdrop-filter: var(--blur);
+}
+#combat-attacking::before {
+    clip-path: polygon(0 40px, 105px 40px, 105px 0, 255px 100px, 0 100px);
+}
+#combat-defending::before {
+    top: auto;
+    bottom: 3px;
+    left: 0;
+    clip-path: polygon(0 0, 255px 0, 255px 60px, 150px 60px, 150px 100px);
+}
+#combat-attacking svg,
+#combat-defending svg {
+    position: relative;
+}
+
+/* -----------------------------
+# Combat - Combat Menu
+----------------------------- */
+
+#combat-menu {
+    display: none; /* Base Animation State */
+    opacity: 0;    /* Base Animation State */
+
+    position: absolute;
+    left: 340px;
+    bottom: 100px;
+    backdrop-filter: var(--blur);
+    background-color: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    border-bottom: var(--border-width) solid var(--border-color);
+}
+#combat-menu .menu-item {
+    position: relative;
+    width: 160px;
+    height: 51px;
+    margin-bottom: -2px;
+    border: var(--border-width) solid var(--border-color);
+    line-height: 49px;
+}
+#combat-menu .menu-item:last-child { height: 50px; }
+#combat-menu .menu-item:last-child { border-bottom-color: transparent }
+#combat-menu .menu-item.focused {
+    transition: border-color 300ms ease;
+    border-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.05);
+}
+#combat-menu .menu-item > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 60px);
+    height: 100%;
+    padding-left: 40px;
+    padding-right: 20px;
+    text-align: right;
+    overflow: hidden;
+    transition: color 250ms ease;
+}
+#combat-menu .menu-item div::before,
+#combat-menu .menu-item div::after {
+    content: '';
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    width: 48px;
+    height: 48px;
+    transform-origin: middle;
+    transform: rotate(45deg);
+    border: var(--psuedo-border-width) solid var(--psuedo-border-color);
+}
+#combat-menu .menu-item div::before {
+    --left: -62px;
+    --top: -8px;
+    --psuedo-border-width: 10px;
+    --psuedo-border-color: rgba(255,255,255,0.05);
+}
+#combat-menu .menu-item div::after {
+    --top: -3px;
+    --left: -36px;
+    --psuedo-border-width: 5px;
+    --psuedo-border-color: rgba(255,255,255,0.05);
+}
+@keyframes combat-menu-item-selected {
+    0% {
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        border-color: rgba(255,255,255,0.3);
+    }
+}
+#combat-menu > .menu-item.selected,
+#combat-menu .menu-item.selected div::before,
+#combat-menu .menu-item.selected div::after {
+    transition: border-color 300ms ease;
+    border-color: rgba(255,255,255,0.8);
+    animation-name: combat-menu-item-selected;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: var(--duration);
+    animation-delay: var(--delay);
+    animation-fill-mode: forwards;
+}
+#combat-menu > .menu-item.selected { animation: none; --duration: 1000ms; --delay: 0ms; background-color: rgba(255,255,255,0.1); transition: background-color 250ms ease }
+#combat-menu .menu-item.selected div::before { --duration: 1000ms; --delay: 1500ms;  transition: border-color 500ms ease-out }
+#combat-menu .menu-item.selected div::after  { --duration: 1000ms; --delay: 2000ms; transition: border-color 500ms ease-in }
+
+/* -----------------------------
+# Combat - Actions Menu
+----------------------------- */
+
+#combat-actions {
+    display: none; /* Base Animation State */
+
+    position: absolute;
+    bottom: 100px;
+    left: 525px;
+    width: 610px;
+    background-color: var(--bg-color);
+    border: var(--border-width) solid var(--border-color);
+    backdrop-filter: var(--blur);
+    font-size: var(--font-size-small);
+    z-index: 2;
+    box-shadow: var(--box-shadow);
+}
+#combat-actions .main { display: flex }
+#combat-actions .main .actions {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    width: 40%;
+    min-height: 209px;
+}
+#combat-actions .main .actions .menu-item {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: calc(100% - 32px);
+    height: 51px;
+    line-height: 48px;
+    margin-bottom: -2px;
+    padding: 0 15px;
+    border: var(--border-width) solid transparent;
+    border-bottom-color: var(--border-color);
+}
+#combat-actions .main .actions .menu-item:last-child:not(:nth-of-type(-n+3)) { border-bottom-color: transparent; height: 49px; }
+#combat-actions .main .actions .menu-item.focused {
+    transition: border-color 300ms ease;
+    border-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.05);
+}
+#combat-actions .main .actions .menu-item.selected {
+    border-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.1);
+}
+#combat-actions .main .actions .menu-item.disabled .name { opacity: 0.3 }
+#combat-actions .main .actions .menu-item .cost { color: var(--blue-text) }
+#combat-actions .main .actions .menu-item .cost.hp { color: var(--red-text) }
+#combat-actions .main .description {
+    position: relative;
+    width: calc(60% - 28px);
+    margin-left: -2px;
+    padding: 13px 15px 15px;
+    background-color: rgba(0,0,0,0.1);
+    border-left: var(--border-width) solid var(--border-color);
+}
+#combat-actions .main .description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/misc/allegiance-ally.png');
+    background-repeat: no-repeat;
+    background-position: top right;
+    opacity: 0.05;
+    transform: scaleX(-1);
+}
+#combat-actions .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 15px;
+    background-color: rgba(0,0,0,0.2);
+    border-top: 2px solid rgba(0,0,0,0.1);
+    z-index: 2;
+}
+#combat-actions .footer > div { text-align: left }
+#combat-actions .footer > div::before {
+    content: var(--text);
+    margin-right: 7px;
+    font-variant: small-caps;
+    color: var(--gray);
+}
+#combat-actions .footer > div.power::before   { --text: 'power'   }
+#combat-actions .footer > div.pattern::before { --text: 'pattern' }
+#combat-actions .footer > div.type::before    { --text: 'type'    }
+#combat-actions .footer > div.range::before   { --text: 'range'   }
+
+/* -----------------------------
+# Combat - Turn Order
+----------------------------- */
+
+#combat-turns {
+    display: none; /* Base Animation State */
+
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    column-gap: 20px;
+}
+#combat-turns .portrait {
+    opacity: 0;
+    margin-bottom: 20px;
+}
+#combat-turns .resource {
+    position: absolute;
+    bottom: -22px;
+    left: -2px;
+    pointer-events: none;
+    width: calc(100%);
+    height: 12px;
+    background-color: var(--bg-color);
+    backdrop-filter: var(--blur);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--box-shadow);
+}
+#combat-turns .resource .bar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--red);
+}
+@keyframes hit-prediction {
+    50%  { opacity: 0.4 }
+    100% { opacity: 0.8 }
+}
+#combat-turns .resource .prediction {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #FFFFFF;
+    opacity: 0;
+}
+#combat-turns .portrait:hover .resource .prediction {
+    width: 40%;
+    animation: hit-prediction 750ms linear infinite;
+    animation-direction: alternate;
+}
+
+/* -----------------------------
+# Combat - Bottom Panel
+----------------------------- */
+
+#combat-panel {
+    display: none; /* Base Animation State */
+    opacity: 0;    /* Base Animation State */
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 78px;
+    line-height: 74px;
+    border-top: var(--border-width) solid var(--border-color);
+    background-color: var(--bg-color);
+    backdrop-filter: var(--blur);
+}
+#combat-panel > .suggestion {
+    opacity: 0;    /* Base Animation State */
+
+    float: left;
+    padding-left: 65px;
+}
+#combat-panel > .suggestion::before,
+#combat-panel > .suggestion::after {
+    content: '';
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    width: var(--width);
+    height: var(--height);
+    transform-origin: center;
+    transform: rotate(45deg);
+}
+#combat-panel > .suggestion::before {
+    --top: 34px;
+    --left: 24px;
+    --width: 8px;
+    --height: 8px;
+    background-color: rgba(255,255,255,0.8);
+}
+#combat-panel > .suggestion::after {
+    --top: 26px;
+    --left: 18px;
+    --width: 12px;
+    --height: 12px;
+    border: 6px solid rgba(255,255,255,0.8);
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+#combat-panel > .controls {
+    opacity: 0;    /* Base Animation State */
+    
+    float: right;
+    padding-right: 30px;
+}
+#combat-panel > .controls > div {
+    display: inline-block;
+    margin-left: 30px;
+}
+#combat-panel > .controls > div:first-child { margin-left: 0 }
+#combat-panel > .controls .key {
+    position: relative;
+    height: 30px;
+    line-height: 28px;
+    margin-right: 15px;
+    padding: 1px 10px 2px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 4px solid rgba(0,0,0,0.5);
+    border-radius: 3px;
+}

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Engine Build</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+  <body>
+
+  <!-------------------------------->
+  <!-- Gameplay Canvas ------------->
+  <!-------------------------------->
+
+    <canvas id="main" width="480" height="270"></canvas>
+
+    <!-------------------------------->
+    <!-- Game Interface -------------->
+    <!-------------------------------->
+
+    <section id="interface" class="resolution-1920-1080">
+
+      <!-------------------------------->
+      <!-- Combat Preparation ---------->
+      <!-------------------------------->
+
+
+      <!-------------------------------->
+      <!-- Active Combat --------------->
+      <!-------------------------------->
+
+      <section id="combat">
+        
+        <!-- Active Unit Summary -->
+        <section id="combat-active">
+          <div class="header">
+            <div class="portrait mimic">
+              <div class="sprite"></div>
+            </div>
+            <div class="status-effects">
+              <div class="effect focusable"><i class="icon burn"></i></div>
+              <div class="effect focusable"><i class="icon frog"></i></div>
+              <div class="placeholder"></div>
+              <div class="placeholder"></div>
+              <div class="placeholder"></div>
+            </div>
+            <div class="tooltip">Deals moderate <span class="green">water</span> damage at the beginning of every turn.</div>
+          </div>
+          <div class="main">
+            <div class="classification">
+              <div class="name">Crabella<i class="icon female"></i></div>
+              <div class="species">
+                <span class="level">23</span>
+                <span class="species-name">Pumpkin Crab</span>
+              </div>
+            </div>
+            <div class="status">
+              <div class="tp">
+                <div class="text">
+                  <span class="current">15</span>
+                </div>
+                <div class="resource">
+                  <div class="bar" style="width: 25%"></div>
+                  <div class="prediction"></div>
+                </div>
+              </div>
+              <div class="hp">
+                <div class="text">
+                  <span class="current">183</span>
+                </div>
+                <div class="resource">
+                  <div class="bar"></div>
+                  <div class="prediction"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Attacker Summary -->
+        <!-- <section id="combat-attacking">
+          <div class="prediction">
+            <span class="damage">&mdash;</span>
+            <span class="accuracy">100</span>
+          </div>
+          <svg height="100" width="255">
+            <polygon points="0,100 255,100 105,0 105,40 0,40" />
+          </svg>
+          <div class="info">
+            <div class="icon poison"></div>
+            <div class="text">Poison</div>
+          </div>
+        </section> -->
+
+        <!-- Defender Summary -->
+        <!-- <section id="combat-defending">
+          <div class="prediction">
+            <span class="damage">124</span>
+            <span class="accuracy">100</span>
+          </div>
+          <div class="info">
+            <div class="icon reaction"></div>
+            <div class="text">Perfect Parry</div>
+          </div>
+          <svg height="100" width="255">
+            <polygon points="0,0 255,0 255,60 150,60 150,100" />
+          </svg>
+        </section> -->
+
+        <!-- Target Unit Summary -->
+        <!-- <section id="combat-target">
+          <div class="header">
+            <div class="portrait player">
+              <div class="sprite"></div>
+            </div>
+            <div class="status-effects">
+              <div class="effect focusable"><i class="icon burn"></i></div>
+              <div class="effect focusable"><i class="icon poison"></i></div>
+              <div class="placeholder"></div>
+              <div class="placeholder"></div>
+              <div class="placeholder"></div>
+            </div>
+            <div class="tooltip">Deals moderate <span class="green">water</span> damage at the beginning of every turn.</div>
+          </div>
+          <div class="main">
+            <div class="classification">
+              <div class="name">Zegend</div>
+              <div class="species">
+                <span class="species-name">weak little child</span>
+                <span class="level">4</span>
+              </div>
+            </div>
+            <div class="status">
+              <div class="tp">
+                <div class="text">
+                  <span class="current">15</span>
+                </div>
+                <div class="resource">
+                  <div class="bar" style="width: 15%"></div>
+                  <div class="prediction"></div>
+                </div>
+              </div>
+              <div class="hp">
+                <div class="text">
+                  <span class="current">54</span>
+                  <span class="max">183</span>
+                </div>
+                <div class="resource">
+                  <div class="bar"></div>
+                  <div class="prediction"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+
+        <!-- Player Turn Commands -->
+        <section id="combat-menu" class="">
+          <div class="menu-item move focusable"><div>Move</div></div>
+          <!-- <div class="menu-item actions focusable"><div>Actions</div></div>
+          <div class="menu-item items focusable"><div>Items</div></div> -->
+          <div class="menu-item end-turn focusable"><div>End Turn</div></div>
+        </section>
+
+        <!-- Player Turn Actions / Items -->
+        <!-- <section id="combat-actions">
+          <div class="main">
+            <div class="actions">
+              <div class="menu-item focusable"><div class="name">Snip</div><div class="cost">&mdash;</div></div>
+              <div class="menu-item focusable"><div class="name">Double Snip</div><div class="cost">15</div></div>
+              <div class="menu-item focusable"><div class="name">Self Snip</div><div class="cost hp">25</div></div>
+              <div class="menu-item focusable disabled"><div class="name">Giga Snippa</div><div class="cost">50+</div></div>
+            </div>
+            <div class="description">
+              A basic attack that deals <i class="icon slashing"></i> <span class="orange">slashing</span> damage.
+              Generates <span class="blue">tempo</span>.
+            </div>
+          </div>
+          <div class="footer">
+            <div class="power">45</div>
+            <div class="type">Piercing</div>
+            <div class="range">Melee</div>
+            <div class="pattern">Target</div>
+          </div>
+        </section> -->
+
+        <!-- Turn Order -->
+        <section id="combat-turns"></section>
+
+        <!-- Bottom Suggestions Panel -->
+        <section id="combat-panel">
+          <div class="suggestion">Select command</div>
+          <section class="controls">
+            <div><span class="key">Enter</span><span class="binding">Confirm</span></div>
+            <div><span class="key"><span style="position: relative; top: -3px;">&larr; &rarr;</span> &uparrow; &downarrow;</span><span class="binding">Cursor</span></div>
+            <div><span class="key">Esc</span><span class="binding">Cancel</span></div>
+          </section>
+        </section>
+
+      </section>
+
+    </section>
+    
+  </body>
+
+  <!---------------------------------->
+  <!-- Engine Classes ---------------->
+  <!---------------------------------->
+
+  <!-- Data - XXX: replace with JSON fetching -->
+  <script type="text/javascript" src="data/Scenario.js"></script>
+  <script type="text/javascript" src="data/Area.js"></script>
+  <script type="text/javascript" src="data/Decoration.js"></script>
+  <script type="text/javascript" src="data/Skill.js"></script>
+  <script type="text/javascript" src="data/Sound.js"></script>
+  <script type="text/javascript" src="data/Unit.js"></script>
+  <script type="text/javascript" src="data/Settings.js"></script>
+  <script type="text/javascript" src="data/Save.js"></script>
+
+  <!-- Logic -->
+  <script type="text/javascript" src="src/service/AI.js"></script>
+  <script type="text/javascript" src="src/service/Area.js"></script>
+
+  <!-- Managers -->
+  <script type="text/javascript" src="src/shared/Camera.js"></script>
+  <script type="text/javascript" src="src/shared/Data.js"></script>
+  <script type="text/javascript" src="src/shared/Events.js"></script>
+  <script type="text/javascript" src="src/shared/Input.js"></script>
+  <script type="text/javascript" src="src/shared/State.js"></script>
+  <script type="text/javascript" src="src/shared/Transition.js"></script>
+  <script type="text/javascript" src="src/shared/Weather.js"></script>
+
+  <!-- Models -->
+  <script type="text/javascript" src="src/models/Area.js"></script>
+  <script type="text/javascript" src="src/models/Asset.js"></script>
+  <script type="text/javascript" src="src/models/Decoration.js"></script>
+  <script type="text/javascript" src="src/models/Location.js"></script>
+  <script type="text/javascript" src="src/models/Scenario.js"></script>
+  <script type="text/javascript" src="src/models/Skill.js"></script>
+  <script type="text/javascript" src="src/models/Sound.js"></script>
+  <script type="text/javascript" src="src/models/Tile.js"></script>
+  <script type="text/javascript" src="src/models/Unit.js"></script>
+
+  <!-- UI Components -->
+  <script type="text/javascript" src="src/components/Component.js"></script>
+  <script type="text/javascript" src="src/components/Actions.js"></script>
+  <script type="text/javascript" src="src/components/Active.js"></script>
+  <script type="text/javascript" src="src/components/Attack.js"></script>
+  <script type="text/javascript" src="src/components/Defense.js"></script>
+  <script type="text/javascript" src="src/components/Items.js"></script>
+  <script type="text/javascript" src="src/components/Menu.js"></script>
+  <script type="text/javascript" src="src/components/Orientation.js"></script>
+  <script type="text/javascript" src="src/components/Panel.js"></script>
+  <script type="text/javascript" src="src/components/Pause.js"></script>
+  <script type="text/javascript" src="src/components/Pointer.js"></script>
+  <script type="text/javascript" src="src/components/Target.js"></script>
+  <script type="text/javascript" src="src/components/Turns.js"></script>
+
+  <!-- Substate Controllers -->
+  <script type="text/javascript" src="src/controllers/states/Battle.js"></script>
+  <script type="text/javascript" src="src/controllers/states/Cinematic.js"></script>
+  <script type="text/javascript" src="src/controllers/states/Setup.js"></script>
+  <script type="text/javascript" src="src/controllers/states/Map.js"></script>
+
+  <!-- State Controllers -->
+  <script type="text/javascript" src="src/controllers/Combat.js"></script>
+  <script type="text/javascript" src="src/controllers/Title.js"></script>
+  <script type="text/javascript" src="src/controllers/World.js"></script>
+  <script type="text/javascript" src="src/controllers/Town.js"></script>
+
+  <!-- Engine -->
+  <script type="text/javascript" src="src/Engine.js"></script>
+
+  <!-- Game Initialization -->
+  <script type="text/javascript">
+    'use strict';
+    const Game = new Engine(document.getElementById('main'));
+    Game.initialize().then(() => Game.start());
+  </script>
+</html>
